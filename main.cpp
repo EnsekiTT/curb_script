@@ -94,27 +94,6 @@ void AST::commandDetect(){
     }else if(words[0] == "while"){
         this->while_function();
     }
-    
-    /*
-     typedef map<string, void(*)()> command_function_dictionary;
-     command_function_dictionary cf_dict;
-     
-     cf_dict.insert(make_pair("exit", exit));
-     cf_dict.insert(make_pair("hello", hello));
-     cf_dict.insert(make_pair("if", if_function));
-     cf_dict.insert(make_pair("else", else_function));
-     cf_dict.insert(make_pair("while", while_function));
-     cf_dict.insert(make_pair("#", comment_function));
-     cf_dict.insert(make_pair("###", wide_comment_function));
-     
-     command_function_dictionary::iterator it = cf_dict.find(words[0]);
-     
-     if (it != cf_dict.end()) {
-     it->second();
-     }else{
-     cout << "command not found" << endl;
-     }
-     */
 }
 
 void AST::printScript(){
