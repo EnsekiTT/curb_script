@@ -12,17 +12,17 @@ struct calc : qi::grammar<Iterator,float(),ascii::space_type>{
     
     calc():calc::base_type(expr)
     {
-        expr = term[
-                    qi::_val=qi::_1] >> *( ('+' >> term[qi::_val += qi::_1])
-                                         | ('-' >> term[qi::_val -= qi::_1]) );
         
-        term = fctr[
-                    qi::_val=qi::_1] >> *( ('*' >> fctr[qi::_val*=qi::_1])
-                                         | ('/' >> fctr[qi::_val/=qi::_1]) );/*[foo]*/
+        expr = term[qi::_val = qi::_1]
+                        >> *( ('+' >> term[qi::_val += qi::_1])
+                            | ('-' >> term[qi::_val -= qi::_1]) );
         
-        fctr = qi::int_|'('>>expr>>')';
+        term = fctr[qi::_val = qi::_1]
+                        >> *( ('*' >> fctr[qi::_val *= qi::_1])
+                            | ('/' >> fctr[qi::_val /= qi::_1]) );/*[foo]*/
+        
+        fctr = qi::float_|'('>>expr>>')';
     }
-    static void foo(){std::cout<<"Called foo"<<std::endl;}
 };
 
 
@@ -33,7 +33,7 @@ int main()
         calc<std::string::iterator> c;
         std::string::iterator first(str.begin());
         float result=0;
-        
+
         std::cout<<
             (qi::phrase_parse(
                               first,
