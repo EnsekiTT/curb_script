@@ -23,6 +23,7 @@ private:
     void while_function();
     void comment_function();
     void wide_comment_function();
+	void coding_style();
     
 public:
     AST() {
