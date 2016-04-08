@@ -24,6 +24,7 @@ private:
     void comment_function();
     void wide_comment_function();
 	void coding_style();
+	void status();
     
 public:
     AST() {
